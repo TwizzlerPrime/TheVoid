@@ -2,7 +2,9 @@ Health=100
 Energy=50
 
 echo "Welcome to The Void... you're cooked pal."
+sleep 2
 echo "You are lost in a dark well of corruption; you may not survive."
+sleep 2
 
 display_status() {
         echo "Health: $Health"
@@ -11,6 +13,7 @@ display_status() {
  }
 
 echo "A silhouette of the Reaper dawns upon you, and he asks: 'Do you wish to tresspass unto my territory?'"
+sleep 2
 read -p "Make your move. (yes/no):" proceed
 
 if [[ $proceed == "no" ]]; then
@@ -19,9 +22,12 @@ if [[ $proceed == "no" ]]; then
 elif [[ $proceed == "yes" ]]; then
         echo "I pity you and your confidence. Good luck."
         display_status
-
+fi
+sleep 2
 echo "As you enter what seems to be a cavern, you spot a portal, a collapsing cave, and.. a book?
+sleep 2
 echo "What will you inspect?"
+
 
 while true; do
 read -p "Decide: portal,cave,book: " choice
@@ -29,18 +35,25 @@ read -p "Decide: portal,cave,book: " choice
 if [[ $choice == "portal" ]]; then
         echo "You approach the portal, but you get dizzy and are whisked away to a different section of the void."
         Energy=$((Energy - 10))
+        sleep 1
+        echo "You lost energy!"
        display_status
        break
 elif [[ $choice == "cave" ]]; then
      echo "The cave you enter seems to have been struck by a mysterious force."
-        echo "The cave collapses, and you have been hit by a few boulders."
+     sleep 1
+     echo "The cave collapses, and you have been hit by a few boulders."
+     sleep 1
+     echo "You lost energy!"   
         Health=$((Health - 20))
         display_status
         break
-lif [[ $choice == "book" ]]; then
+elif [[ $choice == "book" ]]; then
         echo "A surge of willpower flows through you, something tells you you must find more.."
         Energy=$((Energy + 10))
         Health=$((Health + 10))
+        sleep 1
+        echo "You got more health and energy!"
         display_status
         break
 else
@@ -48,8 +61,9 @@ echo "You stand there, confused, waiting for something to happen..(try again)"
 
 fi
 done
-
+sleep 2
 echo "You enter the Sanctuary, the homes of the Darkhearts and alchemists."
+sleep 2
 
 sanctuary_encounter() {
     local sword_energy=10
@@ -57,16 +71,21 @@ sanctuary_encounter() {
     local spell_energy=20
 while true; do
 
-        read -p "Suddenly, pulsating, weaponized energy barely misses you; a Da>
+        read -p "Suddenly, pulsating, weaponized energy barely misses you; a Darkheart  has spotted you! What now? (sword, spell, pulsegun)" defense
 
 if [[ $defense == "sword" && $Energy -ge $sword_energy ]]; then
-        echo "When the Darkheart attacks, you parry the attack and deflect it b>
+        echo "When the Darkheart attacks, you parry the attack and deflect it back, defeating it."
         Energy=$((Energy - sword_energy))
         break
 elif [[ $defense == "pulsegun" && $Energy -ge $pulsegun_energy ]]; then
-            echo "You fire your pulsegun, landing a direct hit and damaging the Darkheart!"
-            Energy=$((Energy - pulsegun_energy))\
+            echo "You fire your pulsegun, landing a direct hit and killing the Darkheart!"
+            Energy=$((Energy - pulsegun_energy))
             break
+elif [[ $defense == "spell"  && $Energy -ge  $spell_energy ]]; then
+        echo "You cast a basic spell, but its strong enough to subdue the Darkheart."
+        Energy=$((Energy - spell_energy))
+        break
+
      fi 
  done
 }
