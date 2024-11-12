@@ -91,6 +91,27 @@ elif [[ $defense == "spell"  && $Energy -ge  $spell_energy ]]; then
 }
 
 sanctuary_encounter
+sleep 2
+display_status
+sleep 3
+echo "The Darkheart might have some interesting loot, but its body is volatile."
+sleep 1
+read -p "Do you scavenge it? (yes/no)" scavenge
+
+while true; do
+  if [[ $scavenge == "no" ]]; then
+        echo "You move on, leaving it behind.."
+        break
+  elif [[ "$scavenge" == "yes" ]]; then
+        echo "You're overwhelmed with a Darkheart's power, it strengthens yo>
+        Energy=$((Energy + 60))
+        Health=$((Health + 100))
+        echo "You have recieved a massive bost in stats!"
+        break
+else
+        echo "You sit down and contemplate.. (pick)"
+  fi
+done
 
 display_status
 

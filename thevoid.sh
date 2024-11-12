@@ -95,6 +95,8 @@ elif [[ $defense == "spell"  && $Energy -ge  $spell_energy ]]; then
 
 sanctuary_encounter
 sleep 2
+display_status
+sleep 3
 echo "The Darkheart might have some interesting loot, but its body is volatile."
 sleep 1
 read -p "Do you scavenge it? (yes/no)" scavenge
