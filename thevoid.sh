@@ -142,9 +142,55 @@ reaper_encounter() {
 	local player_health=$Health
 	local player_energy=$Energy
 
+
 echo "You've wandered in my domain for far too long, it's time i kick you out."
 echo "Your soul is MINE."
 }
 
+
+choose_weapon() {
+while true; do
+
+echo "Choose your weapon, this time."
+echo  "1. Sword"
+echo  "2. Spell"
+echo   "3. pulsegun"
+echo  "4. Advanced pulsegun"
+
+
+read -p "Choose. (A number)" weapon_choice
+
+case $weapon_choice in
+	1)
+            weapon="Sword"
+            echo "You chose sword."
+	    break
+            ;;
+        2)
+            weapon="Spell"
+            echo "You chose to cast spells."
+            break
+            ;;
+        3)
+            weapon="pulsegun"
+            echo "You chose a pulsegun."
+	    break
+            ;;
+        4)
+            weapon="Advanced pulsegun"
+	    echo "A risky but destructive weapon, the Advanced pulsegun."
+	    break
+	    ;;
+
+	*)
+		echo "That's not a weapon.. (try again)"
+		;;
+	
+	esac
+ done
+}	
+
+
 sleep 2
 reaper_encounter
+choose_weapon
