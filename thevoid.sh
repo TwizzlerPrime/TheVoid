@@ -145,7 +145,9 @@ reaper_encounter() {
 
 
 echo "You've wandered in my domain for far too long, it's time i kick you out."
+sleep 2
 echo "Your soul is MINE."
+sleep 1
 
 while (( reaper_health > 0 && player_health > 0)); do
 	echo -e "\n --- Battle Status ---"
